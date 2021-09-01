@@ -1,0 +1,296 @@
+---
+title: "Intro to R, fall 2020"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+---
+
+# Intro to R workshop
+
+### Watzek Library Digital Initiatives
+### October 16th, 2020
+
+
+### Goals of this workshop:
+
+* Gain some familiarity with RStudio Server
+* Write some basic R code
+* Work with a data set
+
+
+Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. To get a sneak peek, click on the down arrow next to the "Knit" menu above, and select "Knit to PDF" (you may have to disable your browser's popup blocker). The resulting document is a mix of formatted text, code samples, and outputs from those code samples. This feature is pretty spiffy for creating tutorials, reports, etc. in which R code and output is used.
+
+
+### Basic R code
+
+R code can be run in the console, or as a "code chunk" within this R notebook. Below is a code chunk. You can run the code chunk by clicking the green "play" button.
+
+```{r}
+2+2
+```
+
+Throughout this workshop, there will be a mix of code chunks pre-populated with code, and empty code chunks. The empty code chunks give you an opportunity to write code, run it, and see the output. Each of the empty chunks are preceded with "YOUR TURN:".
+
+#### Assigning variables
+
+Creating variables in R isn't so bad. Most scripting languages use the "=" sign, but R uses "<-". So below, I'm creating a variable x, and setting it equal to 10. Afterward, I entered "x", which should output the value of x:
+
+```{r}
+# assigns 10 to x
+x<-10
+
+# prints x
+x
+
+
+
+#Anything preceded by a "#" is a "comment". It does not get executed as code.
+#Comments can be super helpful to provide info on your code.
+
+
+```
+
+
+YOUR TURN:
+Now try creating a variable "y", set it equal to 7+9, and then print it out:
+```{r}
+
+
+```
+
+
+
+#### Functions
+
+Like most languages, R has functions that help you quickly execute common tasks. Functions typically take the form of:
+
+functionName(argument1, argument2, etc....)
+
+For example, the function sqrt(number) takes the square root of a number:
+
+```{r}
+sqrt(9)
+```
+
+
+YOUR TURN:
+In the chunk below, create a variable 'z', set it equal to the square root of 90, and print it out:
+```{r}
+
+
+```
+
+One nice thing about RStudio Server is that you can readily access documentation for functions by using the "help" command:
+
+```{r}
+help(sqrt)
+```
+
+The documentation appears in the lower right window in the "help" tab.
+
+
+#### Statistical Functions
+
+Let's start with the "c" function. "c" stands for "combine", and is used to create a one-dimensional array of values (also known as a "vector"). You could also think of this as a column of data from a spreadsheet.
+
+```{r}
+# I polled my coworkers at Watzek Library to see how many pets were in each household:
+watzekPets<-c(1, 1, 2, 3, 2, 0, 1, 1, 1, 0, 0)
+
+#print it out
+watzekPets
+
+
+
+```
+
+
+Now let's say we want to know the average number of pets owned by Watzek staff. For this, we can use the mean function:
+
+```{r}
+
+avgPets<-mean(watzekPets)
+
+avgPets
+
+```
+
+
+
+
+
+We can also determine the standard deviation of our data. Standard Deviation is a measure of how spread apart the measurements are. 
+
+```{r}
+sdPets<-sd(watzekPets)
+
+#print it out
+sdPets
+```
+
+For comparison's sake, run the code sample below on a dataset of measurements that vary much more widely:
+
+```{r}
+
+#pretend dataset of current coins in your pocket of Watzek staff:
+
+watzekCoins<-c(2, 10, 15, 5, 2, 0, 11, 600, 25)
+
+#print average number of coins
+mean(watzekCoins)
+
+#print standard deviation of watzekCoins
+sd(watzekCoins)
+
+
+
+```
+
+
+
+
+
+
+
+YOUR TURN:
+In the code chunk below, create an array called myArray, and set it equal to 3, 7, 8.5, 20, 4, 1, and 15. Print out the mean and standard deviation.
+
+```{r}
+
+# define myArray:
+
+
+#print mean:
+
+
+#print standard deviation:
+
+
+
+
+```
+
+
+
+
+### Working with a Data Set
+
+
+Before working with data, let's quickly talk about packages and libraries in R. While some functions are built in with R (e.g. sqrt), others require users to install packages. A **package** is just a collection of functions, while a **library** is the location of where that package lives.    
+
+In R, there's a special package called the "Tidyverse". The Tidyverse is actually a collection of smaller packages that provide functions for reading, filtering, and cleaning data. It also includes "ggplot", which is used heavily for data visualizations. We'll use some of the functions in the Tidyverse, so we need to load them. Run the code chunk below:
+
+
+```{r}
+library(tidyverse)
+```
+
+
+Let's now load a csv file. Attaching in your workspace is a file named "orbdata2013.csv". This file contains spider data collected by Lewis & Clark students in 2013. You can also load csv files into your "Files" section in the lower-right area. Simply click the "Upload" button, and select a file from your computer.
+
+
+We can load this into our R environment by using the read_csv function:
+
+```{r}
+orbData13<-read_csv("orbdata2013.csv")
+```
+
+The variable "orbData13" now contains the full csv file in "tibble" format. A "tibble" is a type of dataset format used frequently in R, particularly with filtering, manipulating, and plotting data. In the code chunk below, enter and run "orbData13" to see the basic structure of the tibble:
+
+
+```{r}
+orbData13
+```
+
+
+The output above is pretty handy, as you can click the arrows across the top to see the column headings, and use the navigation at the bottom to view more rows.
+
+Let's say were interested in the average orb height from the data. You can create an array of values by targeting a column from the tibble by using the "$" between the tibble variable and columns:
+
+```{r}
+
+# notice the column name is contained in quotes. 
+heights<-orbData13$`Orb height (cm)`
+
+#print heights
+heights
+
+```
+
+
+Now let's find the average, using the "mean" function, as we did earlier:
+
+
+```{r}
+
+avgHeight<-mean(heights)
+
+avgHeight
+
+
+```
+
+....except, it doesn't work! That's beacuse there are some non-numeric values in the array (denoted "NA"). This is not an uncommon problem, as data isn't always perfect, and often needs some clean up. Fortunately R can help in this case, with the "na.omit" function. This strips out values of "NA":
+
+```{r}
+
+cleanedHeights<-na.omit(heights)
+
+cleanedHeights
+
+```
+
+
+
+Now that the data is cleaned up, we can get the average:
+
+```{r}
+
+avgHeights<-mean(cleanedHeights)
+
+avgHeights
+
+
+```
+
+
+Now it's your turn. Can you find the mean and standard deviation of the "orb width(cm)" column?
+
+```{r}
+
+# Create a variable that targets a column
+
+
+
+# Strip out NA values if necessary
+
+
+
+
+# Determine/print mean & standard deviation
+
+
+
+
+```
+
+
+
+
+
+For the weekend:
+
+Download the csv version of the class data here: http://watzek.lclark.edu/orb20.csv
+Load the file into the Files area (click "Upload", and select the csv file from your computer). 
+Use the techniques learned above to determine the mean of a column of data.
+
+
+Need help?
+Email Jeremy at jeremym@lclark.edu
+Jeremy is also hosting R office hours from 3-4pm on Thursdays: https://zoom.us/j/6475828456
+
+
+
+
