@@ -8,9 +8,8 @@ output:
 ---
 
 # Intro to R workshop
-
-### Watzek Library Digital Initiatives
-### October 16th, 2020
+## CORE 121, Professor Weissman-Unni
+## September 13th, 2021
 
 
 ### Goals of this workshop:
@@ -118,6 +117,15 @@ avgPets
 ```
 
 
+We can also find the median, or midpoint, of the data by using the median function:
+
+```{r}
+
+medPets<-median(watzekPets)
+
+medPets
+
+```
 
 
 
@@ -141,6 +149,8 @@ watzekCoins<-c(2, 10, 15, 5, 2, 0, 11, 600, 25)
 #print average number of coins
 mean(watzekCoins)
 
+median(watzekCoins)
+
 #print standard deviation of watzekCoins
 sd(watzekCoins)
 
@@ -155,7 +165,7 @@ sd(watzekCoins)
 
 
 YOUR TURN:
-In the code chunk below, create an array called myArray, and set it equal to 3, 7, 8.5, 20, 4, 1, and 15. Print out the mean and standard deviation.
+In the code chunk below, create an array called myArray, and set it equal to 3, 7, 8.5, 20, 4, 1, and 15. Print out the mean, median, and standard deviation.
 
 ```{r}
 
@@ -163,6 +173,9 @@ In the code chunk below, create an array called myArray, and set it equal to 3, 
 
 
 #print mean:
+
+
+#print median
 
 
 #print standard deviation:
@@ -188,34 +201,40 @@ library(tidyverse)
 ```
 
 
-Let's now load a csv file. Attaching in your workspace is a file named "orbdata2013.csv". This file contains spider data collected by Lewis & Clark students in 2013. You can also load csv files into your "Files" section in the lower-right area. Simply click the "Upload" button, and select a file from your computer.
-
+Let's now load a csv file. If you look in the Files tab in the lower right-hand corner of RStudio Server, you'll see a file named "JMExercise.csv". This file contains the number of minutes I've spent swimming, walking, and cycling from September 1st to September 8th, 2021.
 
 We can load this into our R environment by using the read_csv function:
 
 ```{r}
-orbData13<-read_csv("orbdata2013.csv")
+myMinutes<-read_csv("JMExercise.csv")
 ```
 
-The variable "orbData13" now contains the full csv file in "tibble" format. A "tibble" is a type of dataset format used frequently in R, particularly with filtering, manipulating, and plotting data. In the code chunk below, enter and run "orbData13" to see the basic structure of the tibble:
 
+#change to dataframe
+The variable "myMinutes" now contains the full csv file in a dataframe in "tidy" format. A tidy dataframe has these properties:
+
+* each column is a variable
+* each row is an observation
+* each cell is a single value
+
+We can take a look by printing the variable myMinutes:
 
 ```{r}
-orbData13
+myMinutes
 ```
 
 
-The output above is pretty handy, as you can click the arrows across the top to see the column headings, and use the navigation at the bottom to view more rows.
+Printing out the dataframe can be very useful, as you can see the structure of your data, and also easily refer to column headings, which will use next.
 
-Let's say were interested in the average orb height from the data. You can create an array of values by targeting a column from the tibble by using the "$" between the tibble variable and columns:
+Let's say were interested in finding the average minutes walked. You can create an array of values by targeting a column from the tibble by using the "$" between the tibble variable and columns:
 
 ```{r}
 
 # notice the column name is contained in quotes. 
-heights<-orbData13$`Orb height (cm)`
+minWalked<-myMinutes$`Walking(minutes)`
 
-#print heights
-heights
+#print values for "Walking(minutes)" column:
+minWalked
 
 ```
 
@@ -225,46 +244,24 @@ Now let's find the average, using the "mean" function, as we did earlier:
 
 ```{r}
 
-avgHeight<-mean(heights)
+avgWalked<-mean(minWalked)
 
-avgHeight
-
-
-```
-
-....except, it doesn't work! That's beacuse there are some non-numeric values in the array (denoted "NA"). This is not an uncommon problem, as data isn't always perfect, and often needs some clean up. Fortunately R can help in this case, with the "na.omit" function. This strips out values of "NA":
-
-```{r}
-
-cleanedHeights<-na.omit(heights)
-
-cleanedHeights
-
-```
-
-
-
-Now that the data is cleaned up, we can get the average:
-
-```{r}
-
-avgHeights<-mean(cleanedHeights)
-
-avgHeights
+avgWalked
 
 
 ```
 
 
-Now it's your turn. Can you find the mean and standard deviation of the "orb width(cm)" column?
+
+Now it's your turn. Can you find the mean, median, and standard deviation of the "orb width(cm)" column?
 
 ```{r}
 
-# Create a variable that targets a column
+# Create a variable that targets the swimming column
 
 
 
-# Strip out NA values if necessary
+# Create variable 
 
 
 
