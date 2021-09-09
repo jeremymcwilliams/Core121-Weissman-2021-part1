@@ -277,16 +277,41 @@ Now it's your turn. Can you find the mean, median, and standard deviation of the
 
 
 
-For the weekend:
+##Loading an external data set
 
-Download the csv version of the class data here: http://watzek.lclark.edu/orb20.csv
-Load the file into the Files area (click "Upload", and select the csv file from your computer). 
-Use the techniques learned above to determine the mean of a column of data.
+Lastly, it's important to know how to load a data set into RStudio Server, so you can then use R to run statistics (and later create data visualizations) on that data. 
+
+First, download the data for Oregon from the Covid Tracking Project byt putting the following URL in a browser address bar:
+
+https://covidtracking.com/data/download/oregon-history.csv
+
+Once that has downloaded to your computer, upload it to RStudio Server by doing the following:
+
+* In the Files tab in the lower right-hand corner, click "Upload"
+* Click "Choose File" to locate it on your computer. 
+* Once you've selected the file, click "Ok" to begin the upload.
+* Once it's loaded, you should see it listed among your files in the Files tab.
+
+Now you can load it into your R environment by running the read_csv command as before:
+
+```{r}
+
+#Load the data to a variable:
+orCovid<-read_csv("oregon-history.csv")
+
+#Print it out:
+orCovid
+
+```
+
+
+You'll need to know how to do this so you can work with your dataset next time.
+
 
 
 Need help?
 Email Jeremy at jeremym@lclark.edu
-Jeremy is also hosting R office hours from 3-4pm on Thursdays: https://zoom.us/j/6475828456
+Jeremy is also hosting R office hours from 3-4pm on Tuesdays and Thursdays, or by appointment: https://zoom.us/j/6475828456
 
 
 
