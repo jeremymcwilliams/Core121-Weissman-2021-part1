@@ -1,10 +1,8 @@
 ---
-title: "Intro to R, fall 2020"
+title: "Intro to R workshop, CORE 121, Professor Weissman-Unni"
 output:
   pdf_document: default
-  html_notebook: default
-  html_document:
-    df_print: paged
+
 ---
 
 # Intro to R workshop
@@ -19,7 +17,7 @@ output:
 * Work with a data set
 
 
-Before diving in, you might be wondering what's up with the weird syntax of this document. It's "R Markdown", which is a shorthand for creating formatted text in documents. One of the neat things about R Notebooks (like this document) is that you can "knit" it to an output like PDF or HTML. To get a sneak peek, click on the down arrow next to the "Knit" menu above, and select "Knit to PDF" (you may have to disable your browser's popup blocker). The resulting document is a mix of formatted text, code samples, and outputs from those code samples. This feature is pretty spiffy for creating tutorials, reports, etc. in which R code and output is used.
+A quick note before getting started: the syntax of this document is "R Markdown". For our purposes it's not very important, 
 
 
 ### Basic R code
@@ -37,16 +35,15 @@ Throughout this workshop, there will be a mix of code chunks pre-populated with 
 Creating variables in R isn't so bad. Most scripting languages use the "=" sign, but R uses "<-". So below, I'm creating a variable x, and setting it equal to 10. Afterward, I entered "x", which should output the value of x:
 
 ```{r}
+
+#Anything preceded by a "#" is a "comment". It does not get executed as code.
+#Comments can be super helpful to provide info on your code.
+
 # assigns 10 to x
 x<-10
 
 # prints x
 x
-
-
-
-#Anything preceded by a "#" is a "comment". It does not get executed as code.
-#Comments can be super helpful to provide info on your code.
 
 
 ```
@@ -93,6 +90,9 @@ The documentation appears in the lower right window in the "help" tab.
 #### Statistical Functions
 
 Let's start with the "c" function. "c" stands for "combine", and is used to create a one-dimensional array of values (also known as a "vector"). You could also think of this as a column of data from a spreadsheet.
+
+Your variable might be "texts to mom", or something else you might be measuring in your data diary.
+
 
 ```{r}
 # I polled my coworkers at Watzek Library to see how many pets were in each household:
@@ -217,6 +217,8 @@ The variable "myMinutes" now contains the full csv file in a dataframe in "tidy"
 * each row is an observation
 * each cell is a single value
 
+
+
 We can take a look by printing the variable myMinutes:
 
 ```{r}
@@ -253,20 +255,16 @@ avgWalked
 
 
 
-Now it's your turn. Can you find the mean, median, and standard deviation of the "orb width(cm)" column?
+Now it's your turn. Can you find the mean, median, and standard deviation of the "Cycling(minutes)" column?
 
 ```{r}
 
-# Create a variable that targets the swimming column
+# Create a variable that targets the Cycling(minutes) column
+# You may want to print it out to ensure you did it correctly
 
 
 
-# Create variable 
-
-
-
-
-# Determine/print mean & standard deviation
+# Determine/print mean, median, and standard deviation of "Cycling(minutes)"
 
 
 
@@ -279,39 +277,45 @@ Now it's your turn. Can you find the mean, median, and standard deviation of the
 
 ##Loading an external data set
 
-Lastly, it's important to know how to load a data set into RStudio Server, so you can then use R to run statistics (and later create data visualizations) on that data. 
+Now we're going to practice loading your data from your Google Spreadsheet. If you don't have yours readily available, you can use mine: https://bit.ly/jm-core121-data
 
-First, download the data for Oregon from the Covid Tracking Project byt putting the following URL in a browser address bar:
-
-https://covidtracking.com/data/download/oregon-history.csv
-
-Once that has downloaded to your computer, upload it to RStudio Server by doing the following:
-
+* In another browser tab, find your data (or use mine above)
+* Make sure the "Phase 2:Data" worksheet is selected
+* In the Google Sheets menu, select File->Download->Comma separated values (csv). This should download the file to your computer. 
+* Now switch back to rstudio.cloud
 * In the Files tab in the lower right-hand corner, click "Upload"
 * Click "Choose File" to locate it on your computer. 
 * Once you've selected the file, click "Ok" to begin the upload.
 * Once it's loaded, you should see it listed among your files in the Files tab.
+* Finally, you may want to rename the file to something simple, just to make it easier when you use the read_csv function. Click the checkbox next to the file, click 'Rename', and call it something like 'myData.csv'
 
-Now you can load it into your R environment by running the read_csv command as before:
+Now you can load it into your R environment by running the read_csv command as before (uncomment and edit the lines below as approprite):
 
 ```{r}
 
 #Load the data to a variable:
-orCovid<-read_csv("oregon-history.csv")
+#myData<-read_csv("myData.csv")
 
 #Print it out:
-orCovid
+#myData
 
 ```
 
 
 You'll need to know how to do this so you can work with your dataset next time.
 
+You might notice that the data isn't in "tidy" format, but that's ok. We'll deal with that next time.
+
+
+Now press "Knit" in the menu above to see how the markdown works!
 
 
 Need help?
 Email Jeremy at jeremym@lclark.edu
-Jeremy is also hosting R office hours from 3-4pm on Tuesdays and Thursdays, or by appointment: https://zoom.us/j/6475828456
+Jeremy is also hosting R office hours in Watzek 343: 
+Tuesdays 2-3pm
+Thursdays 2-3pm
+or by appointment
 
 
 
