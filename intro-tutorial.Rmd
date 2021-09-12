@@ -17,7 +17,7 @@ output:
 * Work with a data set
 
 
-A quick note before getting started: the syntax of this document is "R Markdown". For our purposes it's not very important, 
+A quick note before getting started: the syntax of this document is "R Markdown". It basically is a way of formatting text...ignore it for now, and we'll take a look at it at the end of class.
 
 
 ### Basic R code
